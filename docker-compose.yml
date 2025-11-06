@@ -3,8 +3,6 @@ services:
     image: 'ghcr.io/coollabsio/pocketbase:latest'
     container_name: pocketbase
     restart: unless-stopped
-    ports:
-      - "8090:8090"
     volumes:
       - ./pb_data:/app/pb_data
       - ./pb_public:/app/pb_public
