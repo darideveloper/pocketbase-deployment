@@ -1,11 +1,13 @@
 services:
   pocketbase:
-    image: 'ghcr.io/coollabsio/pocketbase:latest'
-    container_name: pocketbase
+    build: .
     restart: unless-stopped
     volumes:
-      - ./pb_data:/app/pb_data
-      - ./pb_public:/app/pb_public
-      - ./pb_hooks:/app/pb_hooks
+      - pocketbase-data:/app/pb_data
+      - pocketbase-public:/app/pb_public
     environment:
       - SERVICE_URL_POCKETBASE_8090
+
+volumes:
+  pocketbase-data:
+  pocketbase-public:
