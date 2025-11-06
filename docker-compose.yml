@@ -5,10 +5,6 @@ services:
     restart: unless-stopped
     ports:
       - "8090:8090"
-    environment:
-      PB_ADMIN_EMAIL: admin@yourdomain.com
-      PB_ADMIN_PASSWORD: your-secure-password
-      TZ: Europe/Berlin
     volumes:
       - ./pb_data:/usr/local/bin/pb_data
       - ./pb_public:/usr/local/bin/pb_public
