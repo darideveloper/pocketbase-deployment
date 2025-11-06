@@ -1,17 +1,27 @@
 services:
   pocketbase:
-    # Run Dockerfile
+    # Build the image using the Dockerfile in this directory
     build: .
     
     restart: unless-stopped
     
+    # Mount only persistent data volumes
     volumes:
       - pocketbase-data:/app/pb_data
       - pocketbase-public:/app/pb_public
       
+    # Environment variables (Coolify injects the URL and admin credentials)
     environment:
       - SERVICE_URL_POCKETBASE_8090
+      - PB_ADMIN_EMAIL=${PB_ADMIN_EMAIL}
+      - PB_ADMIN_PASSWORD=${PB_ADMIN_PASSWORD}
       
+    # Startup Command: Create Admin first, then start the server
+    command: /bin/sh -c "
+      /app/pocketbase admin create ${PB_ADMIN_EMAIL} ${PB_ADMIN_PASSWORD} || true;
+      /app/pocketbase serve --http 0.0.0.0:8090
+    "
+
 volumes:
   pocketbase-data:
   pocketbase-public:
