@@ -10,4 +10,4 @@ services:
       - ./pb_public:/app/pb_public
       - ./pb_hooks:/app/pb_hooks
     environment:
-      - SERVICE_URL_POCKETBASE_8090=${SERVICE_URL_POCKETBASE_8090}
+      - SERVICE_URL_POCKETBASE=${SERVICE_URL_POCKETBASE}
