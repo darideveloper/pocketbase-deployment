@@ -1,19 +1,17 @@
-version: '3.7'
 services:
   pocketbase:
+    # Run Dockerfile
     build: .
+    
     restart: unless-stopped
+    
     volumes:
       - pocketbase-data:/app/pb_data
       - pocketbase-public:/app/pb_public
       
     environment:
       - SERVICE_URL_POCKETBASE_8090
-      - PB_ADMIN_EMAIL=${PB_ADMIN_EMAIL}
-      - PB_ADMIN_PASSWORD=${PB_ADMIN_PASSWORD}
       
-    command: /bin/sh -c "/app/pocketbase admin create ${PB_ADMIN_EMAIL} ${PB_ADMIN_PASSWORD} || true"
-
 volumes:
   pocketbase-data:
   pocketbase-public:
