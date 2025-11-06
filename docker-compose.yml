@@ -1,13 +1,17 @@
 services:
   pocketbase:
+    # Run Dockerfile
     build: .
+    
     restart: unless-stopped
+    
     volumes:
       - pocketbase-data:/app/pb_data
       - pocketbase-public:/app/pb_public
+      
     environment:
       - SERVICE_URL_POCKETBASE_8090
-
+      
 volumes:
   pocketbase-data:
   pocketbase-public:
