@@ -1,6 +1,6 @@
 services:
   pocketbase:
-    build: .
+    image: 'ghcr.io/coollabsio/pocketbase:latest'
     container_name: pocketbase
     restart: unless-stopped
     ports:
@@ -9,3 +9,5 @@ services:
       - ./pb_data:/app/pb_data
       - ./pb_public:/app/pb_public
       - ./pb_hooks:/app/pb_hooks
+    environment:
+      - SERVICE_URL_POCKETBASE_8090=${SERVICE_URL_POCKETBASE_8090}
